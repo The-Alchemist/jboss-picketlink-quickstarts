@@ -26,7 +26,7 @@
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 
         <!-- WildFly dependency versions -->
-        <version.wildfly.maven.plugin>1.0.1.Final</version.wildfly.maven.plugin>
+        <version.wildfly.maven.plugin>1.1.0.Alpha3</version.wildfly.maven.plugin>
 
         <!-- PicketLink dependency versions -->
         <version.picketlink.javaee.bom>2.7.0.Final</version.picketlink.javaee.bom>
@@ -39,8 +39,8 @@
 
         <!-- maven-compiler-plugin -->
         <version.compiler.plugin>3.1</version.compiler.plugin>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
 
     <build>
@@ -96,4 +96,15 @@
         </profile>
     </profiles>
 
+    <dependencyManagement>
+            <dependencies>
+                <dependency>
+                   <groupId>org.wildfly.bom</groupId>
+                   <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                   <version>9.0.0.Beta2</version>
+                   <type>pom</type>
+                   <scope>import</scope>
+                </dependency>
+            </dependencies>
+        </dependencyManagement> 
 </project>

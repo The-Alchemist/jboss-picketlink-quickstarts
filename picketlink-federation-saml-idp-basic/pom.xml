@@ -26,10 +26,12 @@
         <version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
 
         <!-- WildFly dependency versions -->
-        <version.wildfly.maven.plugin>1.0.1.Final</version.wildfly.maven.plugin>
+        <version.wildfly.maven.plugin>1.1.0.Alpha3</version.wildfly.maven.plugin>
 
         <!-- PicketLink dependency versions -->
         <version.picketlink.javaee.bom>2.7.0.Final</version.picketlink.javaee.bom>
+        
+        <version.wildfly.bom></version.wildfly.bom>
 
         <!-- Default target container. -->
         <target.container>jboss-eap</target.container>
@@ -39,19 +41,50 @@
 
         <!-- maven-compiler-plugin -->
         <version.compiler.plugin>3.1</version.compiler.plugin>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
 
     <dependencies>
         <dependency>
-<groupId>org.picketlink.distribution</groupId>
-<artifactId>picketlink-jbas7</artifactId><version>2.7.0.Final</version>
+            <groupId>org.picketlink.distribution</groupId>
+            <artifactId>picketlink-jbas7</artifactId><version>2.7.0.Final</version>
             <scope>provided</scope>
-</dependency>
+        </dependency>
     </dependencies>
 
+        <dependencyManagement>
+            <dependencies>
+                <dependency>
+                   <groupId>org.wildfly.bom</groupId>
+                   <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                   <version>9.0.0.Beta2</version>
+                   <type>pom</type>
+                   <scope>import</scope>
+                </dependency>
+            </dependencies>
+        </dependencyManagement> 
+        
     <build>
+    
+        <pluginManagement>
+            <plugins>
+                <!-- The Maven Surefire plugin tests your application. Here we ensure we are using a version compatible with Arquillian -->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.17</version>
+                </plugin>
+                <!-- The WildFly Maven Plugin deploys your war to a local WildFly container -->
+                <!-- To use, set the JBOSS_HOME environment variable and run:
+                     mvn package wildfly:deploy -->
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    
         <!-- Set the name of the war, used as the context root when the app is deployed -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -94,7 +127,6 @@
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>${version.wildfly.maven.plugin}</version>
                         <configuration>
                             <filename>${project.build.finalName}-${target.container}.${project.packaging}</filename>
                         </configuration>
@@ -102,6 +134,8 @@
                 </plugins>
             </build>
         </profile>
+        
     </profiles>
+    
 
 </project>
