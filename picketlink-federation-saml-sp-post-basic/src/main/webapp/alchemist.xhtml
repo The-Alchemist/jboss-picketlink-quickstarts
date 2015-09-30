@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:body>
+        <h1>JSF 2.0 h:outputText Example</h1>
+    <div>Congratulations! You are currently logged in as: <b>#{request.getRemoteUser()}</b></div>
+
+
+<h:outputText value="userManager.whoAmI():  #{userManager.whoAmI()}"/>
+    <br />
+
+
+<h:outputText value="userManager.something:  #{userManager.something}"/>
+    <br />
+
+<h:outputText value="request.remoteUser:  #{request.remoteUser}"/>
+    <br />
+
+<h:outputText value="is principal an ADMIN?:  #{request.isUserInRole('ADMIN')}"/>
+    <br />
+    
+    <h:outputText value="is principal a USER?:  #{request.isUserInRole('USER')}" />
+    <br />
+    
+    <h:outputText value="Is there principal in my Usermanager?:  #{userManager.principal}" />
+    <br />
+    
+    
+    <h:outputText value="Is there a principal at all?: #{principal.name}" />
+    <br />
+    
+    
+    <h:outputText value="Are we in role ADMIN?: #{ FacesContext.getCurrentInstance().getExternalContext().isUserInRole('ADMIN')}" />
+    <br />
+    
+    
+    
+    <h:outputText value="Are we in role USER: #{ FacesContext.getCurrentInstance().getExternalContext().isUserInRole('USER')}" />
+    <br />
+    
+    
+    
+    <h:outputText value="JSF: are we in role 'manager'? #{ FacesContext.getCurrentInstance().getExternalContext().isUserInRole('manager')}" />
+    <br />
+    
+    
+    <h:outputText value="Is there an caller Principal in EJB Context?: #{ejbContext.getCallerPrincipal()}" />
+    <br />
+    
+    
+    
+    <h:outputText value="Principal in JSF Context: #{facesContext.getExternalContext().getUserPrincipal()}" />
+    <br />
+    
+    
+    
+    <h:outputText value="Principal from SLSB: #{randomEJB.getPrincipal()}" />
+    <br />
+    
+    
+    <h:form>
+        <h:commandButton id="logout" value="Log out" action="#{identity.logout}"/>
+    </h:form>
+
+
+<br style="clear:both"/>
+
+    </h:body>
+</html>

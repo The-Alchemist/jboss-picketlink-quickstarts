@@ -1,0 +1,31 @@
+<jboss-deployment-structure>
+    <deployment>
+        <!-- You must configure the PicketLink dependency to your deployment. The dependency above is a reference to a static module
+        from JBoss EAP modules directory. -->
+        <dependencies>
+            <module name="org.picketlink"/>
+            <module name="org.picketlink.federation"  />
+            
+            
+            <module name="org.picketlink.core.api" meta-inf="import"/>
+            <module name="org.picketlink.core" meta-inf="import"/>
+            <module name="org.picketlink.idm.api" />
+            
+            <module name="org.joda.time" />
+            <module name="org.apache.commons.codec" />
+            <module name="com.google.guava" />
+            
+            <module name="javaee.api" />
+            <module name="org.hibernate" />
+            <module name="org.jboss.as.version" />
+            <module name="org.joda.time" />
+            <module name="com.google.guava" />
+            <module name="org.apache.httpcomponents" />
+            <module name="org.apache.commons.lang" />
+            <module name="org.apache.commons.codec" />
+            <module name="org.apache.commons.io" />
+            <module name="org.picketlink.federation.bindings" />
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>
+
